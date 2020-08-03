@@ -39,11 +39,17 @@ public class King extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
-		// left
-		p.setValues(position.getRow(), position.getColumn() - 1);
-		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColumn()] = true;
+		/* 	left - code with defensive programming
+	 	- the committed original code was in an infinite looping
+		 */
+		if ((p.getColumn() - 1) > 0) {
+			p.setValues(position.getRow(), (position.getColumn() - 1));
+		} else {
+			p.setValues(position.getRow(), 0);
 		}
+		if (getBoard().positionExists(p) && canMove(p)) {
+				mat[p.getRow()][p.getColumn()] = true;
+			}
 
 		// right
 		p.setValues(position.getRow(), position.getColumn() + 1);
@@ -51,11 +57,17 @@ public class King extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
-		// NW
-		p.setValues(position.getRow() - 1, position.getColumn() - 1);
-		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColumn()] = true;
+		/* 	NW - code with defensive programming
+	 	- the committed original code was in an infinite looping
+		 */
+		if ((p.getColumn() - 1) > 0) {
+			p.setValues(position.getRow() - 1, (position.getColumn() - 1));
+		} else {
+			p.setValues(position.getRow() - 1, 0);
 		}
+		if (getBoard().positionExists(p) && canMove(p)) {
+				mat[p.getRow()][p.getColumn()] = true;
+			}
 
 		// NE
 		p.setValues(position.getRow() - 1, position.getColumn() + 1);
@@ -63,11 +75,17 @@ public class King extends ChessPiece {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 
-		// SW
-		p.setValues(position.getRow() + 1, position.getColumn() - 1);
-		if (getBoard().positionExists(p) && canMove(p)) {
-			mat[p.getRow()][p.getColumn()] = true;
+		/* 	NW - code with defensive programming
+	 	- the committed original code was in an infinite looping
+		 */
+		if ((p.getColumn() - 1) > 0) {
+			p.setValues(position.getRow() + 1, (position.getColumn() - 1));
+		} else {
+			p.setValues(position.getRow() + 1, 0);
 		}
+		if (getBoard().positionExists(p) && canMove(p)) {
+				mat[p.getRow()][p.getColumn()] = true;
+			}
 
 		// SE
 		p.setValues(position.getRow() + 1, position.getColumn() + 1);
